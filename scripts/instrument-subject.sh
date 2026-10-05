@@ -84,17 +84,17 @@ chmod +x "$SHIM"
 
 CFL="-g -O1 -fexceptions"
 
+# 本引擎引导 = path_ahead（自动机），不消费 CFG 距离，
+# 论文 pass 对全事件表插桩——一份构建即含全部探针（2026-10-05 简化）。
 mkdir -p "$Build_dir"
-cd "$Build_dir"
-while IFS= read -r raw_line; do
-    line=$(echo "$raw_line" | sed 's/[[:space:]]*$//')
-    [ -z "$line" ] && continue
+{
+    line=$(head -1 "$Targets_file" | sed 's/[[:space:]]*$//')
+    [ -z "$line" ] && { echo "targets.txt 为空" >&2; exit 1; }
     fileName=$(echo "$line" | cut -d: -f1)
     lineNum=$(echo "$line" | cut -d: -f2)
     loc="$fileName:$lineNum"
-    [ -d "$loc" ] && rm -rf "$loc"
-    mkdir -p "$loc"
-    Binary_DIR=$(realpath "$loc")
+    Binary_DIR=$(realpath -m "$Build_dir/$loc")
+    mkdir -p "$Binary_DIR"
     (cd "$Binary_DIR" && cp -r "$Prj_dir"/. .)
 
     (
@@ -128,6 +128,7 @@ while IFS= read -r raw_line; do
     )
 
     BIN=$(find "$Binary_DIR" -name "$EXEC" -type f -perm -u+x | head -1)
-    [ -n "$BIN" ] || { echo "构建后未找到 $EXEC（$loc）" >&2; exit 1; }
-    echo "[instrumented] $loc -> $BIN"
-done < "$Targets_file"
+    [ -n "$BIN" ] || { echo "构建后未找到 $EXEC" >&2; exit 1; }
+    echo "[instrumented] $BIN"
+    echo "  （全事件表已插桩——本引擎单份构建，论文 AFLGo 需按行分目录）"
+}
