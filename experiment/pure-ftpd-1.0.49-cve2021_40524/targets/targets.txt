@@ -1,0 +1,7 @@
+ftpd.c:5943:a
+safe_rw.c:12:o
+safe_rw.c:41:o
+ftpd.c:3441:n
+ftpd.c:4377:n
+ftpd.c:4896:l
+ftpd.c:4011:l

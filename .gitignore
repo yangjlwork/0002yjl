@@ -1,0 +1,15 @@
+.env
+build/
+build-asan/
+*.o
+*.so
+*.bc
+*.bin
+workspace/
+experiment/pure-ftpd-1.0.49-cve2021_40524/src/
+experiment/pure-ftpd-1.0.49-cve2021_40524/build_dir/
+experiment/pure-ftpd-1.0.49-cve2021_40524/output_folder/crashes/
+experiment/pure-ftpd-1.0.49-cve2021_40524/prefix/
+experiment/pure-ftpd-1.0.49-cve2021_40524/.cpg-cache/
+__pycache__/
+*.pyc

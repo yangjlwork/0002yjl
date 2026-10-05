@@ -1,0 +1,7 @@
+USER quotauser
+PASS qu0ta!
+ALLO 999999999
+TYPE I
+PASV
+STOR big.bin
+QUIT

@@ -1,0 +1,1 @@
+event=a loc=ftpd.c:5943 outcome=COUNTEREXAMPLE task_s=254.2 tokens_prompt=1695987 tokens_completion=39099 tokens_hit=1585024 tokens_miss=110963 api_calls=114 | campaign_s=254 tokens_total=1735086 hit_total=1585024 miss_total=110963

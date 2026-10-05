@@ -1,0 +1,6 @@
+USER quotauser
+PASS qu0ta!
+TYPE I
+PASV
+APPE big.bin
+QUIT
